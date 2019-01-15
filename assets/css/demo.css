@@ -1,0 +1,23 @@
+.card-register {
+    background-color: #FFF;
+    max-width: none;
+    margin-bottom: 0;
+}
+
+.section-image {
+    background-image: url('../img/login-image.jpg');
+    padding: 25px 0;
+}
+
+.section-dark {
+    padding: 20px 0;
+}
+
+.title {
+    margin: 0;
+}
+
+.no-link {
+    cursor: default;
+    pointer-events: none;
+}
