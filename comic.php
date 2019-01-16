@@ -21,6 +21,8 @@
 	$comic_id = $comic_path[count($comic_path)-1];
 
 	$json = retrieveOldComic($comic_id);
+
+	echo $json['month'];
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +75,14 @@
 					<nav aria-label="...">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="<?php echo $json['num'] - 1;?>" tabindex="-1">Previous</a>
+                            	<?php
+                            		if ($json['num'] == 1) {
+                            			echo "<a class='page-link no-link' href='#'' tabindex='-1'>Previous</a>";
+                            		} else {
+                            			$previous = $json['num'] - 1;
+                            			echo "<a class='page-link' href='$previous' tabindex='-1'>Previous</a>";
+                            		}
+                            	?>
                             </li>
                             <?php
 	                            $month = date('n');
@@ -84,8 +93,9 @@
                             				<a class='page-link no-link' href='#'>Next</a>
                             			  </li>";
                             	} else {
+                            		$next = $json['num'] + 1;
                             		echo "<li class='page-item'>
-                            				<a class='page-link' href='?comic?'>Next</a>
+                            				<a class='page-link' href='$next'>Next</a>
                             			  </li>";
                             	}
                             ?>
