@@ -19,8 +19,8 @@
 	$comic_parts = parse_url($test_url);
 	$comic_path= explode('/', $comic_parts['path']);
 	$comic_id = $comic_path[count($comic_path)-1];
-echo $comic_path[3];
-	// $json = retrieveOldComic($comic_id);
+
+	$json = retrieveOldComic($comic_id);
 ?>
 
 <!DOCTYPE html>
@@ -32,13 +32,13 @@ echo $comic_path[3];
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- styles -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
-	<link href="assets/css/demo.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../assets/css/paper-kit.css?v=2.1.0" rel="stylesheet"/>
+	<link href="../assets/css/demo.css" rel="stylesheet" />
 	<!-- fonts & icons -->
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="section section-dark">
@@ -73,7 +73,7 @@ echo $comic_path[3];
 					<nav aria-label="...">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="comic.php?id=<?php echo $json['num'] - 1;?>" tabindex="-1">Previous</a>
+                                <a class="page-link" href="<?php echo $json['num'] - 1;?>" tabindex="-1">Previous</a>
                             </li>
                             <?php
 	                            $month = date('n');
@@ -97,18 +97,19 @@ echo $comic_path[3];
 	</div>
 
 	<!-- Core JS Files -->
-	<script src="assets/js/jquery-3.2.1.js" type="text/javascript"></script>
-	<script src="assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
-	<script src="assets/js/popper.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../assets/js/jquery-3.2.1.js" type="text/javascript"></script>
+	<script src="../assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
+	<script src="../assets/js/popper.js" type="text/javascript"></script>
+	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 	<!-- Switches -->
-	<script src="assets/js/bootstrap-switch.min.js"></script>
+	<script src="../assets/js/bootstrap-switch.min.js"></script>
 	<!--  Plugins for Slider -->
-	<script src="assets/js/nouislider.js"></script>
+	<script src="../assets/js/nouislider.js"></script>
 	<!--  Plugins for DateTimePicker -->
-	<script src="assets/js/moment.min.js"></script>
-	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="../assets/js/moment.min.js"></script>
+	<script src="../assets/js/bootstrap-datetimepicker.min.js"></script>
 	<!--  Paper Kit Initialization and functons -->
-	<script src="assets/js/paper-kit.js?v=2.1.0"></script>
+	<script src="../assets/js/paper-kit.js?v=2.1.0"></script>
+	<script src="main.js"></script>
 </body>
 </html>
