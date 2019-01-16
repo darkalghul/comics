@@ -1,9 +1,26 @@
-<?php 
+<?php
 	include 'rest_api.php';
 
-	date_default_timezone_set('America/Costa_Rica');
+	function getURL() {
+		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') 
+			$link = "https";
+		else
+			$link = "http";
 
-	$json = retrieveTodayComic('https://xkcd.com/info.0.json');
+		$link .= "://";
+		$link .= $_SERVER['HTTP_HOST'];
+		$link .= $_SERVER['PHP_SELF'];
+
+		return $link;
+	}
+
+	$test_url = getURL();
+
+	$comic_parts = parse_url($test_url);
+	$comic_path= explode('/', $comic_parts['path']);
+	$comic_id = $comic_path[count($comic_path)-1];
+echo $comic_path[3];
+	// $json = retrieveOldComic($comic_id);
 ?>
 
 <!DOCTYPE html>
