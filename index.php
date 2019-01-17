@@ -56,7 +56,7 @@
 					<nav aria-label="...">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="comic.php/<?php echo $json['num'] - 1;?>" tabindex="-1">Previous</a>
+                                <a class="page-link" href="comic/<?php echo $json['num'] - 1;?>" tabindex="-1">Previous</a>
                             </li>
                             <?php
 	                            $month = date('n');

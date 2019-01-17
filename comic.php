@@ -18,11 +18,14 @@
 
 	$comic_parts = parse_url($test_url);
 	$comic_path= explode('/', $comic_parts['path']);
-	$comic_id = $comic_path[count($comic_path)-1];
+	$current_comic_id = $comic_path[count($comic_path)-1];
 
-	$json = retrieveOldComic($comic_id);
+	$json = retrieveOldComic($current_comic_id);
 
-	echo $json['month'];
+	$new_id = $json['num'];
+	if ($new_id > $current_comic_id || $new_id < $current_comic_id) {
+		header("Location: $new_id");
+	}
 ?>
 
 <!DOCTYPE html>
@@ -120,6 +123,6 @@
 	<script src="../assets/js/bootstrap-datetimepicker.min.js"></script>
 	<!--  Paper Kit Initialization and functons -->
 	<script src="../assets/js/paper-kit.js?v=2.1.0"></script>
-	<script src="main.js"></script>
+	<script src="../assets/js/custom_redirect.js"></script>
 </body>
 </html>
