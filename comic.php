@@ -1,11 +1,6 @@
 <?php
 	include 'rest_api.php';
 
-	// Previous Comic Code
-	$previous_url = $_SERVER['HTTP_REFERER'];
-	$previous_id = getComicId($previous_url);
-	// Previous Comic Code
-
 	function getURL() {
 		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') 
 			$link = "https";
@@ -20,18 +15,25 @@
 	}
 
 	$test_url = getURL();
-
 	$current_comic_id = getComicId($test_url);
+
+	// Previous Comic Code
+	if (empty($_SERVER['HTTP_REFERER'])) {
+		$previous_id = $current_comic_id + 1;
+	} else {
+		$previous_url = $_SERVER['HTTP_REFERER'];
+		$previous_id = getComicId($previous_url);
+	}
+	// Previous Comic Code
 
 	if (is_numeric($previous_id)) {
 		$json = retrieveOldComic($current_comic_id, $previous_id);
-	} else {
-		$todays_comic = retrieveTodayComic('https://xkcd.com/info.0.json');
-		$todays_id = $todays_comic['num'];
-		$json = retrieveOldComic($current_comic_id, $todays_id);
+	} elseif ($previous_id == "index.php") {
+		$json = retrieveOldComic($current_comic_id, $current_comic_id);
 	}
 
 	$new_id = $json['num'];
+
 	if ($new_id > $current_comic_id || $new_id < $current_comic_id) {
 		header("Location: $new_id");
 	}
@@ -92,7 +94,11 @@
                             			echo "<a class='page-link no-link' href='#'' tabindex='-1'>Previous</a>";
                             		} else {
                             			$previous = $json['num'] - 1;
-                            			echo "<a class='page-link' href='$previous' tabindex='-1'>Previous</a>";
+                            			if ($previous == -1) {
+	                            			echo "<a class='page-link no-link' href='#' tabindex='-1'>Previous</a>";
+	                            		} else {
+	                            			echo "<a class='page-link' href='$previous' tabindex='-1'>Previous</a>";
+	                            		}
                             		}
                             	?>
                             </li>

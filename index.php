@@ -57,7 +57,7 @@
                                 <a class="page-link" href="comic.php/<?php echo $json['num'] - 1;?>" tabindex="-1">Previous</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link no-link" href="#" tabindex="-1">Previous</a>
+                                <a class="page-link no-link" href="#" tabindex="-1">Next</a>
                             </li>
                         </ul>
                     </nav>
