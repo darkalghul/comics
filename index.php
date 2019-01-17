@@ -1,8 +1,6 @@
 <?php 
 	include 'rest_api.php';
 
-	date_default_timezone_set('America/Costa_Rica');
-
 	$json = retrieveTodayComic('https://xkcd.com/info.0.json');
 ?>
 
@@ -56,22 +54,11 @@
 					<nav aria-label="...">
                         <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="comic/<?php echo $json['num'] - 1;?>" tabindex="-1">Previous</a>
+                                <a class="page-link" href="comic.php/<?php echo $json['num'] - 1;?>" tabindex="-1">Previous</a>
                             </li>
-                            <?php
-	                            $month = date('n');
-	                            $year = date('o');
-	                            // $day = date('j');
-                            	if ($json['month'] == $month && $json['year'] == $year) {
-                            		echo "<li class='page-item'>
-                            				<a class='page-link no-link' href='#'>Next</a>
-                            			  </li>";
-                            	} else {
-                            		echo "<li class='page-item'>
-                            				<a class='page-link' href='?comic?'>Next</a>
-                            			  </li>";
-                            	}
-                            ?>
+                            <li class="page-item">
+                                <a class="page-link no-link" href="#" tabindex="-1">Previous</a>
+                            </li>
                         </ul>
                     </nav>
 				</div>

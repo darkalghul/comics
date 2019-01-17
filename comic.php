@@ -1,6 +1,11 @@
 <?php
 	include 'rest_api.php';
 
+	// Previous Comic Code
+	$previous_url = $_SERVER['HTTP_REFERER'];
+	$previous_id = getComicId($previous_url);
+	// Previous Comic Code
+
 	function getURL() {
 		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') 
 			$link = "https";
@@ -16,11 +21,15 @@
 
 	$test_url = getURL();
 
-	$comic_parts = parse_url($test_url);
-	$comic_path= explode('/', $comic_parts['path']);
-	$current_comic_id = $comic_path[count($comic_path)-1];
+	$current_comic_id = getComicId($test_url);
 
-	$json = retrieveOldComic($current_comic_id);
+	if (is_numeric($previous_id)) {
+		$json = retrieveOldComic($current_comic_id, $previous_id);
+	} else {
+		$todays_comic = retrieveTodayComic('https://xkcd.com/info.0.json');
+		$todays_id = $todays_comic['num'];
+		$json = retrieveOldComic($current_comic_id, $todays_id);
+	}
 
 	$new_id = $json['num'];
 	if ($new_id > $current_comic_id || $new_id < $current_comic_id) {
@@ -90,10 +99,10 @@
                             <?php
 	                            $month = date('n');
 	                            $year = date('o');
-	                            // $day = date('j');
-                            	if ($json['month'] == $month && $json['year'] == $year) {
+	                            $day = date('j');
+                            	if ($json['month'] == $month && $json['year'] == $year && $json['day'] == $day) {
                             		echo "<li class='page-item'>
-                            				<a class='page-link no-link' href='#'>Next</a>
+                            				<a class='page-link' href='index.php'>Next</a>
                             			  </li>";
                             	} else {
                             		$next = $json['num'] + 1;
