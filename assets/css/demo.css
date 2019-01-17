@@ -21,3 +21,16 @@
     cursor: default;
     pointer-events: none;
 }
+
+.pagination {
+	justify-content: center;
+	margin-top: 1rem;
+}
+
+.pagination li {
+	padding: 0 20px;
+}
+
+.pagination > .page-item > .page-link, .pagination > .page-item > span, .pagination > .page-item:first-child > .page-link, .pagination > .page-item:first-child > span, .pagination > .page-item:last-child > .page-link, .pagination > .page-item:last-child > span {
+	width: 100px;
+}
